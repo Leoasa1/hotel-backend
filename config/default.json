@@ -1,0 +1,4 @@
+{
+	"mongoURI": "mongodb+srv://leo22:PDKPPljbaIvpQjYU@reservation.c0qhipr.mongodb.net/?retryWrites=true&w=majorityretryWrites=true7w=majority",
+	"jwtSecret": "Sercret"
+}
