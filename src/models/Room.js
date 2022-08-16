@@ -1,9 +1,24 @@
 const mongoose = require('mongoose');
+const { objToArray } = require('../utils/object-to-array');
+
 const Schema = mongoose.Schema;
+const ROOM_MODEL_NAME = 'room';
+
+const RoomTypes = {
+	Standard: 'Standard',
+	Premium: 'Premium',
+};
+
+const BedTypes = {
+	King: 'King',
+	Queen: 'Queen',
+	Double: 'Double',
+};
 
 const roomSchema = new Schema({
 	room_type: {
 		type: String,
+		enum: objToArray(RoomTypes),
 		required: true,
 	},
 	price: {
@@ -16,6 +31,7 @@ const roomSchema = new Schema({
 	},
 	bed: {
 		type: String,
+		enum: objToArray(BedTypes),
 		required: true,
 	},
 	floor: {
@@ -52,4 +68,7 @@ const roomSchema = new Schema({
 	},
 });
 
-module.exports = mongoose.model('room', roomSchema);
+exports.ROOM_MODEL_NAME = ROOM_MODEL_NAME;
+exports.RoomTypes = RoomTypes;
+exports.BedTypes = BedTypes;
+exports.roomModel = mongoose.model(ROOM_MODEL_NAME, roomSchema);
