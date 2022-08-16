@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const GUEST_MODEL_NAME = 'guest';
+
 const guestSchema = new Schema({
 	first_name: {
 		type: String,
@@ -24,4 +26,5 @@ const guestSchema = new Schema({
 	},
 });
 
-module.exports = mongoose.model('guest', guestSchema);
+exports.GUEST_MODEL_NAME = GUEST_MODEL_NAME;
+exports.guestModel = mongoose.model(GUEST_MODEL_NAME, guestSchema);

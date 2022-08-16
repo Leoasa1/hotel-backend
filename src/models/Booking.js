@@ -1,14 +1,19 @@
 const mongoose = require('mongoose');
+const { GUEST_MODEL_NAME } = require('./Guest');
+const { ROOM_MODEL_NAME } = require('./Room');
+
 const Schema = mongoose.Schema;
 
 const bookingSchema = new Schema({
-	room_id: {
+	room: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Room',
+		ref: ROOM_MODEL_NAME,
+		required: true,
 	},
-	guest_id: {
+	guest: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Guest',
+		ref: GUEST_MODEL_NAME,
+		required: true,
 	},
 	check_in: {
 		type: Date,
@@ -20,4 +25,4 @@ const bookingSchema = new Schema({
 	},
 });
 
-module.exports = mongoose.model('booking', bookingSchema);
+exports.bookingModel = mongoose.model('booking', bookingSchema);
