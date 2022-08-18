@@ -6,7 +6,6 @@ router.get('/', async (req, res) => {
 	try {
 		const room = await roomModel.find();
 		res.json(room);
-		console.log('Got rooms');
 	} catch (err) {
 		console.log(err.message);
 		res.status(500).send('Server error');
