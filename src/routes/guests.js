@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const { guestModel } = require('../models/Guest');
+const auth = require('../../middleware/auth');
 
 // route    GET
 // descr    Get Guest
 // access   private
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
 	try {
 		const guest = await guestModel.find();
 		res.json(guest);

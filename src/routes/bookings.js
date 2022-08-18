@@ -3,11 +3,12 @@ const router = express.Router();
 const { roomModel } = require('../models/Room');
 const { bookingModel } = require('../models/Booking');
 const { guestModel } = require('../models/Guest');
+const auth = require('../../middleware/auth');
 
 // route    GET
 // descr    Get Booking
 // access   private
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
 	try {
 		const booking = await bookingModel
 			.find()
@@ -20,6 +21,10 @@ router.get('/', async (req, res) => {
 	}
 });
 
+
+// route    POST
+// descr    Create Booking
+// access   public
 router.post('/', async (req, res) => {
 	const {
 		first_name,

@@ -34,20 +34,6 @@ function mapRoomsByBedType(rooms) {
 	}, {});
 }
 
-function mapRoomsToFlatArray(data) {
-	return data;
-	return Object.keys(data).reduce((acc, curr) => {
-		const roomsByType = data[curr].rooms;
-		const rooms = Object.keys(roomsByType).reduce((_acc, _curr) => {
-			_acc = [...acc, roomsByType[_curr].room];
-			return _acc;
-		}, []);
-
-		acc = [...acc, ...rooms];
-		return acc;
-	}, []);
-}
-
 router.get('/search', async (req, res) => {
 	const { checkin, checkout } = req.query;
 
@@ -74,7 +60,7 @@ router.get('/search', async (req, res) => {
 		});
 
 		res.status(200).json({
-			rooms: mapRoomsToFlatArray(mapRoomsByBedType(rooms)),
+			rooms: mapRoomsByBedType(rooms),
 		});
 	} catch (err) {
 		console.log(err.message);
