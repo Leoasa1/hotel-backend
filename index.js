@@ -1,7 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-const cors = require('cors');
 const colors = require('colors');
 
 colors.enable();
@@ -15,8 +14,6 @@ const app = express();
 connectDB();
 
 app.use(express.json({}));
-
-app.use(cors());
 
 app.use('/guest', require('./src/routes/guests'));
 app.use('/user', require('./src/routes/users'));
